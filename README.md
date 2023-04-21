@@ -28,7 +28,7 @@ The CartContent component is responsible for displaying the cart items. It conta
 
 The project uses Redux to manage the state of the cart. The cartSlice file contains the Redux slice for the cart, which includes the initial state, actions, and reducers.
 
-## ontributing
+## Contributing
 Contributions are welcome! If you find any bugs or have suggestions for new features, please open an issue or submit a pull request.
 
 ## License
