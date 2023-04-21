@@ -11,6 +11,8 @@ import Account from './components/Account';
 import Help from './components/Help';
 import Home from './components/Home';
 import Search from './components/Search';
+import { Provider } from 'react-redux';
+
 const App = () => {
   return (
     <BrowserRouter>

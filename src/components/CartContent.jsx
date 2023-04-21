@@ -1,16 +1,26 @@
 import React from 'react';
-import cartItems from '../cartItems';
+
 import styled from '@emotion/styled';
 import jumiaExpress from '../assets/jexpress-logo.png';
 
 import { AiOutlineDelete } from 'react-icons/ai';
 import { BsFileMinusFill } from 'react-icons/bs';
 import { BsFilePlusFill } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import { decreaseItem, incresaseItem, removeItem } from './features/cart/cartSlice';
+import { caculateTotal } from './features/cart/cartSlice';
+import { useEffect } from 'react';
 const CartContent = () => {
+  const dispatch = useDispatch();
+  const { cartItems, totalProduct } = useSelector((store) => store.cartSlice);
+
+  useEffect(() => {
+    dispatch(caculateTotal());
+  });
   return (
     <Wrapper>
       <div></div>
-      <h3>cart (3)</h3>
+      <h3>cart {totalProduct}</h3>
       {cartItems.map((item) => {
         return (
           <div className='cart' key={item.id}>
@@ -24,7 +34,7 @@ const CartContent = () => {
                 </div>
               </div>
               <div className='right'>
-                <h3 className='price'>₦ 139,999</h3>
+                <h3 className='price'>₦ {item.price}</h3>
                 <div className='prevPrice'>
                   <strike>₦ 190,000 </strike>
 
@@ -33,14 +43,26 @@ const CartContent = () => {
               </div>
             </div>
             <div className='remove'>
-              <button className='removeBtn'>
+              <button
+                className='removeBtn'
+                onClick={() => {
+                  dispatch(removeItem(item.id));
+                }}>
                 <AiOutlineDelete />
                 Remove
               </button>
               <div className='stepContainer'>
-                <BsFileMinusFill />
-                <h3>3</h3>
-                <BsFilePlusFill />
+                <BsFileMinusFill
+                  onClick={() => {
+                    dispatch(decreaseItem(item.id));
+                  }}
+                />
+                <h3>{item.amount}</h3>
+                <BsFilePlusFill
+                  onClick={() => {
+                    dispatch(incresaseItem(item.id));
+                  }}
+                />
               </div>
             </div>
           </div>

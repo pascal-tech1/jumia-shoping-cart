@@ -13,8 +13,11 @@ import { AiOutlineMenu, AiOutlineShoppingCart, AiOutlineSearch } from 'react-ico
 import { RxCaretDown } from 'react-icons/rx';
 import { BiHelpCircle } from 'react-icons/bi';
 import { HiOutlineUser } from 'react-icons/hi';
+import { useSelector } from 'react-redux';
 
 const Nav = () => {
+  const { totalProduct } = useSelector((store) => store.cartSlice);
+
   return (
     <Wrapper>
       <AiOutlineMenu className='hamburger' />
@@ -34,7 +37,7 @@ const Nav = () => {
         <button className='navLInk'>
           <AiOutlineShoppingCart className='linkIcon' /> Cart
         </button>
-        <h4>{3}</h4>
+        <h4>{totalProduct}</h4>
       </div>
     </Wrapper>
   );

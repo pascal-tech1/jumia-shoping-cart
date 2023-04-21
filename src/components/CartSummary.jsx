@@ -1,15 +1,17 @@
 import styled from '@emotion/styled';
-import React from 'react';
+// import React from 'react';
+import { useSelector } from 'react-redux';
 
 const CartSummary = () => {
+  const { subTotal } = useSelector((store) => store.cartSlice);
   return (
     <Wrapper>
       <h2>Cart Summary</h2>
       <div className='amount'>
         <h3>Subtotal</h3>
-        <h2>₦ 111,272</h2>
+        <h2>₦{subTotal.toFixed(2)}</h2>
       </div>
-      <button className='checkout'>CHECKOUT (₦ 111,272)</button>
+      <button className='checkout'>CHECKOUT ₦ {subTotal}</button>
     </Wrapper>
   );
 };
